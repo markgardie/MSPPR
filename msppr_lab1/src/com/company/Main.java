@@ -28,12 +28,14 @@ public class Main {
             if (q1.get(i) >= q1.get(j) && q2.get(i) >= q2.get(j)) {
                 q1.remove(j);
                 q2.remove(j);
+                i = 0;
                 j = 1;
             }
             else if (q1.get(i)  <= q1.get(j) && q2.get(i) <= q2.get(j)) {
                 q1.remove(i);
                 q2.remove(i);
                 i = 0;
+                j = 1;
             }
             else {
                 j++;
