@@ -1,9 +1,6 @@
 package com.company;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import static java.util.Map.entry;
 
@@ -11,52 +8,51 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Map<Integer, Integer> q1 = Map.ofEntries(
-                entry(1, 2),
-                entry(2, 6),
-                entry(3, 2),
-                entry(4, 6),
-                entry(5, 8),
-                entry(6, 1),
-                entry(7, 6),
-                entry(8, 2),
-                entry(9, 8),
-                entry(10, 9),
-                entry(11, 1),
-                entry(12, 3),
-                entry(13, 5),
-                entry(14, 6),
-                entry(15, 0),
-                entry(16, 6),
-                entry(17, 6),
-                entry(18, 9),
-                entry(19, 9),
-                entry(20, 6)
-        );
+        HashMap<Integer, Integer> q1 = new HashMap<Integer, Integer>() {{
+            put(1, 2);
+            put(2, 6);
+            put(3, 2);
+            put(4, 6);
+            put(5, 8);
+            put(6, 1);
+            put(7, 6);
+            put(8, 2);
+            put(9, 8);
+            put(10, 9);
+            put(11, 1);
+            put(12, 3);
+            put(13, 5);
+            put(14, 6);
+            put(15, 0);
+            put(16, 6);
+            put(17, 6);
+            put(18, 9);
+            put(19, 9);
+            put(20, 6);
+        }};
 
-        Map<Integer, Integer> q2 = Map.ofEntries(
-                entry(1, 0),
-                entry(2, 3),
-                entry(3, 1),
-                entry(4, 0),
-                entry(5, 3),
-                entry(6, 6),
-                entry(7, 7),
-                entry(8, 3),
-                entry(9, 2),
-                entry(10, 2),
-                entry(11, 1),
-                entry(12, 5),
-                entry(13, 3),
-                entry(14, 3),
-                entry(15, 8),
-                entry(16, 2),
-                entry(17, 8),
-                entry(18, 5),
-                entry(19, 8),
-                entry(20, 0)
-        );
-
+        HashMap<Integer, Integer> q2 = new HashMap<Integer, Integer>() {{
+            put(1, 0);
+            put(2, 3);
+            put(3, 1);
+            put(4, 0);
+            put(5, 3);
+            put(6, 6);
+            put(7, 7);
+            put(8, 3);
+            put(9, 2);
+            put(10, 2);
+            put(11, 1);
+            put(12, 5);
+            put(13, 3);
+            put(14, 3);
+            put(15, 8);
+            put(16, 2);
+            put(17, 8);
+            put(18, 5);
+            put(19, 8);
+            put(20, 0);
+    }};
 
         pareto(q1, q2);
 
@@ -82,9 +78,8 @@ public class Main {
         }
 
         System.out.println("Множина значень за Парето:");
-        for (i = 0; i < q1.size(); i++) {
-            System.out.println(q1.get(i) + ":" + q2.get(i));
-        }
+        Set<Integer> alternatives = q1.keySet();
+        System.out.println(alternatives);
 
     }
 }
