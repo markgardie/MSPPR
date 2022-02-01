@@ -30,4 +30,11 @@ public class Main {
                 .collect(Collectors.toList());
     }
 
+    public static boolean pareto(List<Integer> e1, List<Integer> e2) {
+        return (e1.get(0) >= e2.get(0) && e1.get(1) > e2.get(1)) || (e1.get(0) > e2.get(0) && e1.get(1) >= e2.get(1));
+    }
+
+    public static boolean slater(List<Integer> e1, List<Integer> e2) {
+        return e1.get(0) > e2.get(0) && e1.get(1) > e2.get(1);
+    }
 }
