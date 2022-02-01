@@ -1,8 +1,8 @@
 package com.company;
 
 import java.util.*;
-
-import static java.util.Map.entry;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Main {
 
@@ -21,16 +21,13 @@ public class Main {
 
     }
 
-    public static int[] parse(String row) {
+    public static List<List<Integer>> parse(String row) {
 
-        String[] numbersStr = row.split(",");
-        int[] numbersInt = new int[20];
-
-        for (int i = 0; i < numbersStr.length; i++) {
-            numbersInt[i] = Integer.parseInt(numbersStr[i]);
-        }
-
-        return numbersInt;
+        return Arrays.stream(row.split(","))
+                .map(i -> Arrays.stream(i.split(""))
+                        .map(j -> Integer.parseInt(j))
+                .collect(Collectors.toList()))
+                .collect(Collectors.toList());
     }
 
 }
