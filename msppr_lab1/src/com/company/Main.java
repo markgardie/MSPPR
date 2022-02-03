@@ -1,6 +1,9 @@
 package com.company;
 
 import java.util.*;
+import java.util.function.BiFunction;
+import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -25,16 +28,30 @@ public class Main {
 
         return Arrays.stream(row.split(","))
                 .map(i -> Arrays.stream(i.split(""))
-                        .map(j -> Integer.parseInt(j))
+                        .map(Integer::parseInt)
                 .collect(Collectors.toList()))
                 .collect(Collectors.toList());
     }
 
-    public static boolean pareto(List<Integer> e1, List<Integer> e2) {
+    public static Boolean pareto(List<Integer> e1, List<Integer> e2) {
         return (e1.get(0) >= e2.get(0) && e1.get(1) > e2.get(1)) || (e1.get(0) > e2.get(0) && e1.get(1) >= e2.get(1));
     }
 
-    public static boolean slater(List<Integer> e1, List<Integer> e2) {
+    public static Boolean slater(List<Integer> e1, List<Integer> e2) {
         return e1.get(0) > e2.get(0) && e1.get(1) > e2.get(1);
+    }
+
+    public static List<List<Integer>> driver(String input, BiFunction<List<Integer>, List<Integer>, Boolean> fun) {
+        List<List<Integer>> parsed = parse(input);
+
+        for(List<Integer> e1 : parsed) {
+            parsed = parsed
+                    .stream()
+                    .filter(e2 -> fun.apply(e1, e2))
+                    .collect(Collectors.toList());
+        }
+
+        return parsed;
+
     }
 }
