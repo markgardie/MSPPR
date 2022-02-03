@@ -1,9 +1,11 @@
 package com.company;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.function.BiFunction;
+import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Main {
 
@@ -19,11 +21,11 @@ public class Main {
                 third,
                 String.join(",", first, second, third)};
 
-
         for (int i = 0; i < arr.length; i++) {
             System.out.println("Pareto " + (i+1) + " " + driver(arr[i], pareto) + "\n" +
-                    "Slater " + (i+1) + " " + driver(arr[i], slater) + "\n");
+                    "Slater " + (i+1) + " " + driver(arr[i], pareto) + "\n");
         }
+
     }
 
     public static List<List<Integer>> parse(String row) {
@@ -35,11 +37,12 @@ public class Main {
                 .collect(Collectors.toList());
     }
 
-    private static final BiFunction<List<Integer>, List<Integer>, Boolean> pareto =
+    private static BiFunction<List<Integer>, List<Integer>, Boolean> pareto =
             (e1, e2) -> (e1.get(0) >= e2.get(0) && e1.get(1) > e2.get(1)) || (e1.get(0) > e2.get(0) && e1.get(1) >= e2.get(1));
 
-    private static final BiFunction<List<Integer>, List<Integer>, Boolean> slater =
+    private static BiFunction<List<Integer>, List<Integer>, Boolean> salter =
             (e1, e2) -> e1.get(0) > e2.get(0) && e1.get(1) > e2.get(1);
+
 
     public static List<List<Integer>> driver(String input, BiFunction<List<Integer>, List<Integer>, Boolean> fun) {
         List<List<Integer>> parsed = parse(input);
